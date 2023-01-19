@@ -12,9 +12,9 @@ metro keys add validator --keyring-backend="test"
 metro add-genesis-account $(metro keys show validator -a --keyring-backend="test") $coins
 metro gentx validator 5000000000utick \
   --keyring-backend="test" \
-  --chain-id $CHAINID \
-  --orchestrator-address $(metro keys show validator -a --keyring-backend="test") \
-  --evm-address 0x966e6f22781EF6a6A82BBB4DB3df8E225DfD9488 # private key: da6ed55cb2894ac2c9c10209c09de8e8b9d109b910338d5bf3d747a7e1fc9eb9
+  --chain-id $CHAINID # \
+  # --orchestrator-address $(metro keys show validator -a --keyring-backend="test") \
+  # --evm-address 0x966e6f22781EF6a6A82BBB4DB3df8E225DfD9488 # private key: da6ed55cb2894ac2c9c10209c09de8e8b9d109b910338d5bf3d747a7e1fc9eb9
 
 metro collect-gentxs
 
@@ -26,6 +26,16 @@ sed -i'.bak' 's/timeout_commit = "1s"/timeout_commit = "1s"/g' ~/.metro/config/c
 sed -i'.bak' 's/timeout_propose = "1s"/timeout_propose = "1s"/g' ~/.metro/config/config.toml
 sed -i'.bak' 's/index_all_keys = false/index_all_keys = true/g' ~/.metro/config/config.toml
 sed -i'.bak' 's/mode = "full"/mode = "validator"/g' ~/.metro/config/config.toml
+
+cat << EOF >>  ~/.metro/config/config.toml
+
+[rollmint]
+aggregator = "true"
+block_time = "5s"
+namespace_id = "0001020304050607"
+da_layer = "celestia"
+da_config = '{"base_url":"http://192.167.3.0:26658","timeout":60000000000,"gas_limit":6000000,"namespace_id":[0,1,2,3,4,5,6,7]}'
+EOF
 
 # Start the app
 metro start

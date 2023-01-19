@@ -60,7 +60,7 @@ proto-format:
 
 build-docker:
 	@echo "--> Building Docker image"
-	$(DOCKER) build -t histolabs/metro -f docker/Dockerfile .
+	$(DOCKER) build -t histolabs/metro -f docker/Dockerfile.test .
 .PHONY: build-docker
 
 lint:
