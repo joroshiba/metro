@@ -34,7 +34,7 @@ aggregator = "true"
 block_time = "5s"
 namespace_id = "0001020304050607"
 da_layer = "celestia"
-da_config = '{"base_url":"http://192.167.3.0:26658","timeout":60000000000,"gas_limit":6000000,"namespace_id":[0,1,2,3,4,5,6,7]}'
+da_config = '{"base_url":"http://0.0.0.0:26658","timeout":60000000000,"gas_limit":6000000,"namespace_id":[0,1,2,3,4,5,6,7]}'
 EOF
 
 # Start the app
